@@ -1,0 +1,2 @@
+Create new control:
+dotnet new avalonia.usercontrol -o Views -n StoryCardView --namespace Lhk.Views

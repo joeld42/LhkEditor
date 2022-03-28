@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="800"
+             Background="Green"
+             x:Class="LhkEditor.Views.StoryCardView">
+    <DockPanel Margin="10">
+        
+        <Label DockPanel.Dock="Top">Card Title</Label>
+        <TextBox DockPanel.Dock="Top" Watermark="Title" 
+                 Text="{Binding Title}" />
+        
+        <Label DockPanel.Dock="Top">Story Text</Label>
+        
+        
+        <StackPanel DockPanel.Dock="Bottom" 
+                    Orientation="Horizontal"
+                    Background="Orange" 
+                    Margin="10">
+            <Border Background="LightBlue"
+                    BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="15"
+                    Padding="4" Margin="5">
+                <Panel  Width="180" Height="200" />
+                </Border>
+            <Panel Background="LightBlue" Width="180" Height="200" Margin="5"/>
+            <Panel Background="LightBlue" Width="80" Height="200" Margin="5"/>
+        </StackPanel>
+        
+        <TextBox Watermark="Story Text" Margin="10"
+                 Text="{Binding StoryText}"/>
+        
+    </DockPanel>
+</UserControl>

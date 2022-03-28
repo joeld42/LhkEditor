@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:models="clr-namespace:LhkEditor.Models"
+        
+             mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+             x:Class="LhkEditor.Views.StoryProjectView">
+  <DockPanel>
+    <Button DockPanel.Dock="Bottom">Add an card</Button>
+
+    <TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}">
+    
+        <TreeView.DataTemplates>
+            <TreeDataTemplate DataType="models:StoryDeck" ItemsSource="{Binding Cards}">
+                <TextBlock Foreground="Red" Text="{Binding DeckName}" />
+            </TreeDataTemplate>
+                        
+            <DataTemplate DataType="models:StoryCard">
+                <TextBlock Foreground="Blue" Text="{Binding Title}" />
+            </DataTemplate>    
+
+        </TreeView.DataTemplates>
+    </TreeView>
+
+    <!-- ItemsControl Items="{Binding Cards}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <CheckBox Margin="4"
+            IsChecked = "{Binding IsChecked}"
+            Content="{Binding Title}"
+            />
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl -->
+  </DockPanel>
+</UserControl>
