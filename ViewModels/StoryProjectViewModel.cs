@@ -16,6 +16,7 @@ namespace LhkEditor.ViewModels
             SelectedItems.CollectionChanged += (sender, args) =>
             {
                 Console.WriteLine( $"Deck changed, length now {SelectedItems.Count}");
+                StoryCard nextSelectedCard = null;
                 for (int i = 0; i < SelectedItems.Count; i++)
                 {
                     if (SelectedItems[i] is StoryDeck)
@@ -27,9 +28,19 @@ namespace LhkEditor.ViewModels
                     {
                         StoryCard card = SelectedItems[i] as StoryCard;
                         Console.WriteLine($"Selected card {card.Title}");
+
+                        nextSelectedCard = card;
                     }
                 }
+
+                if (nextSelectedCard != null)
+                {
+                    // TODO here how to set StoryCardView.Card to nextSelectedCard??
+                    Console.WriteLine( $"TODO: Set storyCardView to {nextSelectedCard.Title}");
+                }
             };
+            
+            
             Console.WriteLine("Hello from storyProject");
             
         }
