@@ -7,9 +7,12 @@
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
              x:Class="LhkEditor.Views.StoryProjectView">
   <DockPanel>
-    <Button DockPanel.Dock="Bottom">Add an card</Button>
+      
+      <Button DockPanel.Dock="Bottom"
+              Command="{Binding AddCard}"
+              >Add a card</Button>
 
-    <TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}">
+      <TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}">
     
         <TreeView.DataTemplates>
             <TreeDataTemplate DataType="models:StoryDeck" ItemsSource="{Binding Cards}">

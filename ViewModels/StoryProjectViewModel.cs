@@ -7,6 +7,13 @@ namespace LhkEditor.ViewModels
 {
     public class StoryProjectViewModel : ViewModelBase
     {
+        List<IObserver<StoryCard>> observers = new();
+        public StoryCard Card;
+
+        public delegate void CardChangedDelegate(StoryCard card);
+
+        public CardChangedDelegate OnCardChanged;
+        
         public StoryProjectViewModel(IEnumerable<StoryDeck> decks)
         {
             Decks = new ObservableCollection<StoryDeck>(decks);
@@ -37,12 +44,23 @@ namespace LhkEditor.ViewModels
                 {
                     // TODO here how to set StoryCardView.Card to nextSelectedCard??
                     Console.WriteLine( $"TODO: Set storyCardView to {nextSelectedCard.Title}");
+                    Card = nextSelectedCard;
+
+                    if (OnCardChanged != null)
+                    {
+                        OnCardChanged( Card );
+                    }
                 }
             };
             
             
             Console.WriteLine("Hello from storyProject");
             
+        }
+
+        public void AddCard()
+        {
+            Console.WriteLine($"In AddCard: Card is {Card.Title}");
         }
 
         public ObservableCollection<StoryDeck> Decks { get; }

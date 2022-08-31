@@ -32,5 +32,9 @@
         <TextBox Watermark="Story Text" Margin="10"
                  Text="{Binding StoryText}"/>
         
+        <Button HorizontalAlignment="Center">
+            Do Something
+        </Button>
+        
     </DockPanel>
 </UserControl>

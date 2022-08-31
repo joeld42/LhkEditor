@@ -10,8 +10,28 @@
         Title="LhkEditor">
         
         <DockPanel>                
-                <views:StoryProjectView DataContext="{Binding DeckList}" DockPanel.Dock="Left" Width="320"/>
-                <views:StoryCardView DockPanel.Dock="Right" DataContext="{Binding SelectedCard}"/>
+                <views:StoryProjectView  x:Name="ProjectView" 
+                                         DataContext="{Binding DeckList}" DockPanel.Dock="Left" Width="320"/>
+                
+                
+                <TabControl
+                        DockPanel.Dock="Right"
+                        Margin="0 16"
+                        TabStripPlacement="{Binding TabPlacement}">
+                        <TabItem Header="Card">
+                                <StackPanel Orientation="Vertical" Spacing="8">
+                                        <views:StoryCardView DockPanel.Dock="Right" DataContext="{Binding SelectedCardDetails }"/>
+                                </StackPanel>
+                        </TabItem>
+                        
+                        <TabItem Header="Stuff">                       
+                                <StackPanel Orientation="Vertical" Spacing="8">
+                                        <views:BlargView></views:BlargView>
+                                </StackPanel>
+                        </TabItem>
+                        
+                </TabControl>
+                
         </DockPanel>
 
 </Window>
