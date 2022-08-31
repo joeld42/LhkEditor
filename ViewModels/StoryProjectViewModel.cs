@@ -7,7 +7,6 @@ namespace LhkEditor.ViewModels
 {
     public class StoryProjectViewModel : ViewModelBase
     {
-        List<IObserver<StoryCard>> observers = new();
         public StoryCard Card;
 
         public delegate void CardChangedDelegate(StoryCard card);
@@ -20,6 +19,7 @@ namespace LhkEditor.ViewModels
 
             SelectedItems = new ObservableCollection<object>();
 
+            /*
             SelectedItems.CollectionChanged += (sender, args) =>
             {
                 Console.WriteLine( $"Deck changed, length now {SelectedItems.Count}");
@@ -39,7 +39,7 @@ namespace LhkEditor.ViewModels
                         nextSelectedCard = card;
                     }
                 }
-
+                
                 if (nextSelectedCard != null)
                 {
                     // TODO here how to set StoryCardView.Card to nextSelectedCard??
@@ -52,6 +52,7 @@ namespace LhkEditor.ViewModels
                     }
                 }
             };
+            */
             
             
             Console.WriteLine("Hello from storyProject");

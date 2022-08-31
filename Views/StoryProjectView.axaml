@@ -12,7 +12,10 @@
               Command="{Binding AddCard}"
               >Add a card</Button>
 
-      <TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}">
+      <!--TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}" -->
+      <TreeView 
+          Items="{Binding Decks}" 
+          SelectedItem="{Binding $parent[Window].DataContext.SelectedCardDetails.Card}">
     
         <TreeView.DataTemplates>
             <TreeDataTemplate DataType="models:StoryDeck" ItemsSource="{Binding Cards}">
