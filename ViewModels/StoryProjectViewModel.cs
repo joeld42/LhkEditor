@@ -7,15 +7,15 @@ namespace LhkEditor.ViewModels
 {
     public class StoryProjectViewModel : ViewModelBase
     {
-        public StoryCard Card;
+        public StoryCardModel Card;
 
-        public delegate void CardChangedDelegate(StoryCard card);
+        public delegate void CardChangedDelegate(StoryCardModel card);
 
         public CardChangedDelegate OnCardChanged;
         
-        public StoryProjectViewModel(IEnumerable<StoryDeck> decks)
+        public StoryProjectViewModel(IEnumerable<StoryDeckModel> decks)
         {
-            Decks = new ObservableCollection<StoryDeck>(decks);
+            Decks = new ObservableCollection<StoryDeckModel>(decks);
 
             SelectedItems = new ObservableCollection<object>();
 
@@ -64,7 +64,7 @@ namespace LhkEditor.ViewModels
             Console.WriteLine($"In AddCard: Card is {Card.Title}");
         }
 
-        public ObservableCollection<StoryDeck> Decks { get; }
+        public ObservableCollection<StoryDeckModel> Decks { get; }
         public ObservableCollection<object> SelectedItems { get; }
     }
 }

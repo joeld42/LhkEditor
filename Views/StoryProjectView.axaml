@@ -15,14 +15,15 @@
       <!--TreeView Items="{Binding Decks}" SelectedItems="{Binding SelectedItems, Mode=TwoWay}" -->
       <TreeView 
           Items="{Binding Decks}" 
-          SelectedItem="{Binding $parent[Window].DataContext.SelectedCardDetails.Card}">
+          SelectedItem="{Binding $parent[Window].DataContext.SelectedCardDetails.Card}"
+          AutoScrollToSelectedItem="False" >
     
         <TreeView.DataTemplates>
-            <TreeDataTemplate DataType="models:StoryDeck" ItemsSource="{Binding Cards}">
+            <TreeDataTemplate DataType="models:StoryDeckModel" ItemsSource="{Binding Cards}">
                 <TextBlock Foreground="Red" Text="{Binding DeckName}" />
             </TreeDataTemplate>
                         
-            <DataTemplate DataType="models:StoryCard">
+            <DataTemplate DataType="models:StoryCardModel">
                 <TextBlock Foreground="Blue" Text="{Binding Title}" />
             </DataTemplate>    
 

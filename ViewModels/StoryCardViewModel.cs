@@ -8,9 +8,9 @@ namespace LhkEditor.ViewModels
 {
     public class StoryCardViewModel : ViewModelBase
     {
-        private StoryCard _card;
+        private StoryCardModel _card;
         
-        public StoryCard Card
+        public StoryCardModel Card
         {
             get { return _card;  }
             set
@@ -53,7 +53,7 @@ namespace LhkEditor.ViewModels
             }
         }
         
-        public StoryCardViewModel( StoryCard card )
+        public StoryCardViewModel( StoryCardModel card )
         {
             Console.WriteLine( $"Hello from SCVM ctor 2, Card title is {card.Title}");
             Card = card;
@@ -62,7 +62,7 @@ namespace LhkEditor.ViewModels
         public StoryCardViewModel( )
         {
             Console.WriteLine("Hello from SCVM ctor");
-            Card = new StoryCard {Title = "ZZTest Card", StoryText = "ZZSimple Card"};
+            Card = new StoryCardModel {Title = "ZZTest Card", StoryText = "ZZSimple Card"};
         }
     }
 }

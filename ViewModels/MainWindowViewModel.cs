@@ -13,11 +13,13 @@ namespace LhkEditor.ViewModels
     {
         public MainWindowViewModel( StoryDB db)
         {
-            db.InitWithSampleDecks();
+            //db.InitWithSampleDecks();
+            db.InitWithGameDecks( "/Users/joeld/Projects/luxe_projects/lighthouse/story/");
+            
             DeckList = new StoryProjectViewModel(db.GetAllDecks());
-            SelectedCardDetails = new StoryCardViewModel( new StoryCard { Title = "ZZMainCard", StoryText = "Card from Mainview" } );
+            SelectedCardDetails = new StoryCardViewModel( new StoryCardModel { Title = "ZZMainCard", StoryText = "Card from Mainview" } );
 
-            DeckList.OnCardChanged += (StoryCard card) =>
+            DeckList.OnCardChanged += (StoryCardModel card) =>
             {
                 Console.WriteLine( $" Card Changed ---> {card.Title}");
                 SelectedCardDetails.Card = card;

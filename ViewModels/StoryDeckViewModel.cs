@@ -12,13 +12,13 @@ namespace LhkEditor.ViewModels
 {
     public class StoryDeckViewModel : ViewModelBase
     {
-        public StoryDeckViewModel( IEnumerable<StoryCard> cards )
+        public StoryDeckViewModel( IEnumerable<StoryCardModel> cards )
         {
-            cards = new ObservableCollection<StoryCard>(cards);
+            cards = new ObservableCollection<StoryCardModel>(cards);
         }
 
-        ObservableCollection<StoryCard> cards = new ObservableCollection<StoryCard>();       
-        public ObservableCollection<StoryCard> Cards { 
+        ObservableCollection<StoryCardModel> cards = new ObservableCollection<StoryCardModel>();       
+        public ObservableCollection<StoryCardModel> Cards { 
             get 
             {
                 return cards;
