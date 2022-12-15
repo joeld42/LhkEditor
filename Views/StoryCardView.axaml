@@ -2,10 +2,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="800"
-             Background="Green"
+             xmlns:models="clr-namespace:LhkEditor.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
+             Background="#ccccdd"
              x:Class="LhkEditor.Views.StoryCardView">
-    <DockPanel Margin="10">
+    
+    <Grid RowDefinitions="*, 4, *">
+        
+        <Grid Grid.Row="0" ColumnDefinitions="*, Auto" Margin="8">
+            
+            <!-- Card title, properties, etc -->
+            <Grid Grid.Column="0" RowDefinitions="Auto, Auto, Auto, *" Margin="4">
+                
+                <Label Grid.Row="0" >Card Title</Label>
+                <TextBox Grid.Row="1" Watermark="Unnamed Card" 
+                                     Text="{Binding Title}" />
+                
+                <Label Grid.Row="2" >Story Text</Label>
+                <TextBox Grid.Row="3" Watermark="Blah blah blah..." 
+                         TextWrapping="Wrap"
+                         Text="{Binding StoryText}" />
+            </Grid>
+            
+            <!-- Card Image -->
+            <Image MaxWidth="512" Grid.Column="1" Name="bitmapImage" Source="/Assets/lighthouse1.png"/>
+            
+        </Grid>
+        
+        <!-- Splitter -->
+        <GridSplitter Grid.Row="1" Background="Black" ResizeDirection="Rows"/>
+        
+        <!-- Bottom Panel -->
+        <Grid Grid.Row="2" ColumnDefinitions="Auto, *" Margin="8">
+            
+            <ListBox Grid.Column="0" Name="OutcomeList" Items="{Binding Outcomes}"
+                     SelectedItem="{Binding SelectedOutcome}"
+                     Width="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Prompt}" Background="Orange" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <ContentControl Grid.Column="1" Name="OutcomesPanel" Content="{Binding #OutcomeList.SelectedItem}">
+                
+                <ContentControl.DataTemplates>
+                    
+                    <!-- Outcome DataTemplate -->
+                    <DataTemplate DataType="{x:Type models:CardOutcomeModel}">
+                        <Grid RowDefinitions="Auto, *">
+                            <DockPanel Grid.Row="0" Margin="8" LastChildFill="True">
+                                <Label>Prompt:</Label>
+                                <TextBox DockPanel.Dock="Left" Name="TestText" Text="{Binding Prompt}" />    
+                            </DockPanel>
+                            <Rectangle Grid.Row="1" Fill="Blue"></Rectangle>
+                        </Grid>
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+                
+            </ContentControl>
+            
+        </Grid>
+    </Grid>
+    
+    <!--
+    <DockPanel Margin="10" LastChildFill="True">
         
         <Label DockPanel.Dock="Top">Card Title</Label>
         <TextBox DockPanel.Dock="Top" Watermark="Title" 
@@ -14,27 +76,53 @@
         <Label DockPanel.Dock="Top">Story Text</Label>
         
         
-        <StackPanel DockPanel.Dock="Bottom" 
-                    Orientation="Horizontal"
-                    Background="Orange" 
-                    Margin="10">
-            <Border Background="LightBlue"
-                    BorderBrush="Black"
-                    BorderThickness="2"
-                    CornerRadius="15"
-                    Padding="4" Margin="5">
-                <Panel  Width="180" Height="200" />
-                </Border>
-            <Panel Background="LightBlue" Width="180" Height="200" Margin="5"/>
-            <Panel Background="LightBlue" Width="80" Height="200" Margin="5"/>
+        <StackPanel DockPanel.Dock="Bottom" Height="150" Margin="0,8,8,0"
+                    Orientation="Horizontal">
+            
+            <ListBox Name="OutcomeList" Items="{Binding Outcomes}"
+                     SelectedItem="{Binding SelectedOutcome}"
+                     Width="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Prompt}" Background="Orange" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <ContentControl Name="OutcomesPanel" Content="{Binding #OutcomeList.SelectedItem}">
+                
+                <ContentControl.DataTemplates>
+                    <DataTemplate DataType="{x:Type models:CardOutcomeModel}">
+                    <TextBlock Name="TestText" Text="{Binding Prompt}" />
+                    </DataTemplate>
+                </ContentControl.DataTemplates>
+                
+                
+                
+            </ContentControl>
+            
+            <Panel Background="LightBlue" Width="120" Height="80" Margin="5"/>
+            <Panel Background="LightBlue" Width="120" Height="80" Margin="5"/>
         </StackPanel>
         
-        <TextBox Watermark="Story Text" Margin="10"
+        <StackPanel DockPanel.Dock="Right" Margin="10,0,0,0">
+            <Button HorizontalAlignment="Stretch">
+                Do Something
+            </Button>
+            <Button HorizontalAlignment="Stretch">
+                More THing
+            </Button>
+            <Button HorizontalAlignment="Stretch">
+                Thing 3
+            </Button>
+        </StackPanel>
+        
+        <TextBox Watermark="ZZStory Text" 
+                 DockPanel.Dock="Left"
+                 TextWrapping="Wrap"
                  Text="{Binding StoryText}"/>
         
-        <Button HorizontalAlignment="Center">
-            Do Something
-        </Button>
-        
     </DockPanel>
+    -->
+    
 </UserControl>

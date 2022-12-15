@@ -8,8 +8,36 @@ namespace LhkEditor.ViewModels
 {
     public class StoryCardViewModel : ViewModelBase
     {
-        private StoryCardModel _card;
         
+        
+        private CardOutcomeModel _selectedOutcome;
+        public CardOutcomeModel SelectedOutcome
+        {
+            get { return _selectedOutcome; }
+            set
+            {
+                _selectedOutcome = value;
+                Console.WriteLine( $"SVCM: selected outcome: {_selectedOutcome?.Prompt}" );
+
+                this.RaisePropertyChanged( "SelectedCardOutcome");
+            }
+        }
+
+        public ObservableCollection<CardEffectModel> SelectedEffects
+        {
+            get
+            {
+                if (_selectedOutcome != null)
+                {
+                    return _selectedOutcome.Effects;
+                } else {
+                    return new ObservableCollection<CardEffectModel>();
+                }
+                
+            }
+        }
+
+        private StoryCardModel _card;
         public StoryCardModel Card
         {
             get { return _card;  }
@@ -17,13 +45,14 @@ namespace LhkEditor.ViewModels
             {
                 Console.WriteLine( $"SCVM: card setter {value.Title}");
                 
-                _card = value; 
+                _card = value;
                 this.RaisePropertyChanged( "Title");
                 this.RaisePropertyChanged( "StoryText");
+                this.RaisePropertyChanged( "Outcomes");
                 
             }
         }
-
+        
         public string Title
         {
             get { return _card.Title;  }
@@ -35,6 +64,15 @@ namespace LhkEditor.ViewModels
                     _card.Title = value;
                     this.RaisePropertyChanged("Title");
                 }
+            }
+        }
+
+        public ObservableCollection<CardOutcomeModel> Outcomes
+        {
+            get
+            {
+                Console.WriteLine( $"SCVM: In outcomes getter, have {_card.Outcomes.Count} outcomes");
+                return _card.Outcomes;
             }
         }
 
@@ -52,7 +90,7 @@ namespace LhkEditor.ViewModels
 
             }
         }
-        
+
         public StoryCardViewModel( StoryCardModel card )
         {
             Console.WriteLine( $"Hello from SCVM ctor 2, Card title is {card.Title}");
@@ -64,5 +102,6 @@ namespace LhkEditor.ViewModels
             Console.WriteLine("Hello from SCVM ctor");
             Card = new StoryCardModel {Title = "ZZTest Card", StoryText = "ZZSimple Card"};
         }
+
     }
 }

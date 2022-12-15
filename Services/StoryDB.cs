@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using JetBrains.Annotations;
 using LhkEditor.LxParser;
 using LhkEditor.Models;
 
@@ -109,6 +110,10 @@ namespace LhkEditor.Services
                                 case "text":
                                     card.StoryText = cardProp.Value as string;
                                     break;
+                                
+                                case "options":
+                                    AddParsedOutcomes( ref card, cardProp.Value ); 
+                                    break;
                                     
                                 default:
                                     Console.WriteLine( $"Unknown card property {cardProp.Key}");
@@ -116,6 +121,7 @@ namespace LhkEditor.Services
                             }
                             
                         }
+                        
                         deck.Cards.Add(card);
                     }
                 }
@@ -123,6 +129,42 @@ namespace LhkEditor.Services
 
             return deck;
         }
+
+        static void AddParsedOutcomes(ref StoryCardModel card, [CanBeNull] object parsedOutcomes)
+        {
+            if (parsedOutcomes is object[] outcomes)
+            {
+                foreach (object? outcomeObj in outcomes)
+                {
+                    if (outcomeObj is Dictionary<string, object?> outcomeDict)
+                    {
+                        CardOutcomeModel outcome = new();
+                        foreach (KeyValuePair<string, object?> outcomeProp in outcomeDict)
+                        {
+                            switch (outcomeProp.Key)
+                            {
+                                // case "cmd":
+                                //     string cmdString = outcomeProp.Value as string;
+                                //     Console.WriteLine( $"Command is {cmdString}");
+                                //     break;
+                                
+                                case "prompt":
+                                    outcome.Prompt = outcomeProp.Value as string;
+                                    Console.WriteLine($"Card Prompt: {outcome.Prompt}");
+                                    break;
+                                
+                                default:
+                                    Console.WriteLine( $"Skipping outcome property {outcomeProp.Key}");
+                                    break;
+                            }
+                        }
+                        
+                        card.Outcomes.Add(outcome);
+                    }
+                }
+            }
+        }
+        
         
         static void Print(object? value, int indent = 0)
         {

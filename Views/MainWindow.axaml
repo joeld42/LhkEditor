@@ -19,9 +19,7 @@
                         Margin="0 16"
                         TabStripPlacement="{Binding TabPlacement}">
                         <TabItem Header="Card">
-                                <StackPanel Orientation="Vertical" Spacing="8">
-                                        <views:StoryCardView DockPanel.Dock="Right" DataContext="{Binding SelectedCardDetails }"/>
-                                </StackPanel>
+                                <views:StoryCardView DockPanel.Dock="Right" DataContext="{Binding SelectedCardDetails }"/>
                         </TabItem>
                         
                         <TabItem Header="Stuff">                       

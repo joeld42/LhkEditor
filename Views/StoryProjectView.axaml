@@ -19,26 +19,25 @@
           AutoScrollToSelectedItem="False" >
     
         <TreeView.DataTemplates>
+            
             <TreeDataTemplate DataType="models:StoryDeckModel" ItemsSource="{Binding Cards}">
                 <TextBlock Foreground="Red" Text="{Binding DeckName}" />
             </TreeDataTemplate>
                         
-            <DataTemplate DataType="models:StoryCardModel">
+            <TreeDataTemplate DataType="models:StoryCardModel" ItemsSource="{Binding Outcomes}">
                 <TextBlock Foreground="Blue" Text="{Binding Title}" />
-            </DataTemplate>    
+            </TreeDataTemplate>
+            
+            <TreeDataTemplate DataType="models:CardOutcomeModel" ItemsSource="{Binding Effects}">
+                <TextBlock Foreground="Orange" Text="{Binding Prompt}" />
+            </TreeDataTemplate>
+            
+            <DataTemplate DataType="models:CardEffectModel">
+                <TextBlock Foreground="Green" Text="{Binding Title}" />
+            </DataTemplate>
+            
 
         </TreeView.DataTemplates>
     </TreeView>
-
-    <!-- ItemsControl Items="{Binding Cards}">
-      <ItemsControl.ItemTemplate>
-        <DataTemplate>
-          <CheckBox Margin="4"
-            IsChecked = "{Binding IsChecked}"
-            Content="{Binding Title}"
-            />
-        </DataTemplate>
-      </ItemsControl.ItemTemplate>
-    </ItemsControl -->
   </DockPanel>
 </UserControl>
